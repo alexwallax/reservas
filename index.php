@@ -2,6 +2,7 @@
     require 'config.php';
     require 'classes/reservas.class.php';
 
+
     $reservas = new Reservas($pdo);// criando uma class e inserindo a conexão dentro dela
 ?>
 
@@ -23,6 +24,12 @@
         <a class="btn btn-primary" href="reservar.php">Adicionar Reserva</a>
         <br/><br/>
 
+        <form method="GET">
+            <select name="ano">
+                <option></option>
+            </select>
+        </form>
+
         <?php 
 
             $lista = $reservas->getReservas();
@@ -34,7 +41,12 @@
             } 
             
         ?>
+        
+        <hr>
 
+        <?php
+            require 'calendario.php';
+        ?>
     </div>
 
 </body>
