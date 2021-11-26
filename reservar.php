@@ -44,38 +44,33 @@
         <h1>Adicionar Reserva</h1>
 
         <form method="POST">
-
-            Carro:<br/>
             
-            <select name="carro">
-                <?php
-                    $lista = $carros->getCarros();
+	        Carro:<br/>
 
-                    foreach($lista as $carro):
+        <select name="carro">
+            <?php
+            $lista = $carros->getCarros();
+
+            foreach($lista as $carro):
                 ?>
-
-
                 <option value="<?php echo $carro['id']; ?>"><?php echo $carro['nome']; ?></option>
-
-
                 <?php
-                    endforeach;
-                ?>
-            </select><br/><br/>
+            endforeach;
+            ?>
+        </select><br/><br/>
 
-            Data de início:<br/>
-            <input type="text" name="data_inicio" /><br/><br/>
+        Data de início:<br/>
+        <input type="text" name="data_inicio" /><br/><br/>
 
-            Data de fim:<br/>
-            <input type="text" name="data_fim" /><br/><br/>
+        Data de fim:<br/>
+        <input type="text" name="data_fim" /><br/><br/>
 
-            Seu nome:<br/>
-            <input type="text" name="pessoa" /><br/><br/>
+        Nome da pessoa:<br/>
+        <input type="text" name="pessoa" /><br/><br/>
 
-            <input class="btn btn-primary" type="submit" value="Reservar" /><br/><br/>
-
-
-        </form>
+        <input type="submit" value="Reservar" />
+        
+    </form>
 
     </div>
 </body>

@@ -13,7 +13,7 @@
         public function getCarros() {
             $array = array();
 
-            $sql = "SELECT * FROM carro";
+            $sql = "SELECT * FROM carros";
             $sql = $this->pdo->query($sql);
 
             if($sql->rowCount() > 0) {
@@ -22,6 +22,5 @@
 
             return $array;
         }
-
 
     }

@@ -1,6 +1,7 @@
 <?php
     try {
-        $pdo = new PDO("mysql:dbname=reservas;host=localhost", "root", "");//conexão com o bando de dados
+        $pdo = new PDO("mysql:dbname=projeto_reservas;host=localhost", "root", "");
     } catch(PDOException $e) {
         echo "ERRO: ".$e->getMessage();
+        exit;
     }

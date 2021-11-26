@@ -17,28 +17,66 @@
     <title>Reservas</title>
 </head>
 <body>
+
     <div class="container mt-5">
         
-        <h1>Reservas</h1><br/>
+        <h1>Reservas</h1>
 
         <a class="btn btn-primary" href="reservar.php">Adicionar Reserva</a>
         <br/><br/>
 
         <form method="GET">
+
             <select name="ano">
-                <option></option>
-            </select>
+                <?php for($q=date('Y');$q>=2000;$q--): ?>
+                    <option><?php echo $q; ?></option>
+                <?php endfor; ?> 
+            </select><!--seleciona o ano-->
+
+            <select name="mes">
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>
+                <option>08</option>
+                <option>09</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+            </select><!--seleciona o mes-->
+
+            <input class="btn btn-outline-primary btn-sm" type="submit" value="Mostrar"/>
+
         </form>
 
         <?php 
+            if(empty($_GET['ano'])) {
+                exit;
+            }
 
-            $lista = $reservas->getReservas();
+            $data = $_GET['ano'].'-'.$_GET['mes'];
+            $dia1 = date('w', strtotime($data));//01 é o dia do mes (vai ser impresso em que dia 01/01/2017) no caso 0 zero(domingo) 
+            $dias = date('t', strtotime($data));//para saber quantos dias tem no mes especifico
+            $linhas = ceil(($dia1+$dias) / 7);
+            $dia1 = -$dia1;
+            $data_inicio = date('Y-m-d', strtotime($dia1.' days', strtotime($data)));//pegar o primeiro dia do calendario
+            $data_fim = date('Y-m-d', strtotime(( ($dia1 + ($linhas*7) - 1) ).' days', strtotime($data)));//pegar o ultimo dia do calendario
 
+            $lista = $reservas->getReservas($data_inicio, $data_fim);
+
+            //mostra a lista na tela
+            /*
             foreach($lista as $item) {
                 $data1 = date('d/m/Y', strtotime($item['data_inicio']));
                 $data2 = date('d/m/Y', strtotime($item['data_fim']));
                 echo $item['pessoa'].' reservou o carro '.$item['id_carros'].' entre '.$data1.' e '.$data2.'<br/>';
             } 
+            */
+
+
             
         ?>
         
